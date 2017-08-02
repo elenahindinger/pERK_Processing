@@ -9,9 +9,9 @@ import seaborn as sns
 
 __author__ = 'Elena Maria Daniela Hindinger'
 
-input_folder = r'J:\Elena Hindinger\PERK\lm2\normalise each fish\masked pixel data'
+input_folder = r'J:\Elena Hindinger\PERK\lm2\analysis batch 2\masked pixel data'
 input_list = natsorted(os.listdir(input_folder))
-output_folder = r'J:\Elena Hindinger\PERK\lm2\normalise each fish'
+output_folder = r'J:\Elena Hindinger\PERK\lm2\analysis batch 2'
 conditions = ['gr DMSO', 'gr Fluoxetine', 'het DMSO', 'het Fluoxetine']
 # all_data = []
 all_data = pd.DataFrame()
@@ -19,6 +19,7 @@ counter = 0
 for file in input_list:
     filepath = os.path.join(input_folder, file)
     df = pd.read_csv(filepath)
+    df = df.drop(df.columns[0], axis=1)
     array = df.values.flatten()
     df = pd.DataFrame(array)
     df['Treatment Condition'] = conditions[counter]
